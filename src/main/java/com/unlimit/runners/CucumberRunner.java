@@ -12,6 +12,10 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.testng.util.TimeUtils;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 @CucumberOptions(features = {"src/main/resources/features"}, glue = {"com.unlimit.steps", "com.unlimit.runners"})
 public class CucumberRunner {
@@ -35,9 +39,9 @@ public class CucumberRunner {
 
     @Before
     public void openBrowser() {
-        String browserName= config.getPropertyValue("browser.name");
+        String browserName = config.getPropertyValue("browser.name");
         config.driver = InitializeDriver.initializeDriver(browserName);
-        config.driver.manage().window().maximize();
+        config.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
     }
 
     @After

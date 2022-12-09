@@ -69,6 +69,20 @@ public class RegisterUserPage {
         UiHelper.enterData(config, confirmPassword, CreateUserSteps.senderPassword, "Confirm:");
     }
 
+    public void enterRecipientDetails() {
+        UiHelper.enterData(config, userNameField, CreateUserSteps.recipientFirstName, "First Name:");
+        UiHelper.enterData(config, lastNameField, CreateUserSteps.recipientLastName, "Last Name:");
+        UiHelper.enterData(config, address, CreateUserSteps.recipientAddress, "Address:");
+        UiHelper.enterData(config, city, CreateUserSteps.recipientCity, "City:");
+        UiHelper.enterData(config, state, CreateUserSteps.recipientState, "State:");
+        UiHelper.enterData(config, zipCode, CreateUserSteps.recipientZipCode, "Zip Code:");
+        UiHelper.enterData(config, phoneNumber, CreateUserSteps.recipientPhone, "Phone #:");
+        UiHelper.enterData(config, ssn, CreateUserSteps.recipientSSN, "SSN:");
+        UiHelper.enterData(config, username, CreateUserSteps.recipientUserName, "Username:");
+        UiHelper.enterData(config, password, CreateUserSteps.recipientPassword, "Password:");
+        UiHelper.enterData(config, confirmPassword, CreateUserSteps.recipientPassword, "Confirm:");
+    }
+
     public void clickOnRegisterLink() {
         UiHelper.click(config, registerLink, "Register Link");
     }
@@ -81,6 +95,10 @@ public class RegisterUserPage {
             config.log.warn("Error message not found!");
         }
         if (errorMessage != null) {
+            String errorMsg = UiHelper.getText(config, errorMessage, "Error Message");
+            if(errorMsg.contains("internal error")){
+                config.fail("Getting An internal error has occurred and has been logged.");
+            }
             CreateUserSteps.senderUserName = CreateUserSteps.senderUserName + new Random().nextInt();
             return true;
         }

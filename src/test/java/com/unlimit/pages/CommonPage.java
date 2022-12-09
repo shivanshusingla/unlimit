@@ -25,5 +25,4 @@ public class CommonPage {
     public void clickOnButton(String buttonName) {
         UiHelper.click(config, config.driver.findElement(By.xpath("//input[@value='" + buttonName + "']")), buttonName + " Button");
     }
-
 }

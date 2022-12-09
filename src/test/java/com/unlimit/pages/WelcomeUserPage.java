@@ -13,12 +13,26 @@ public class WelcomeUserPage {
     @FindBy(linkText = "Bill Pay")
     public WebElement billPayLink;
 
+    @FindBy(linkText = "Log Out")
+    public WebElement logoutLink;
+
+    @FindBy(linkText = "Accounts Overview")
+    public WebElement accountsOverviewLink;
+
     public WelcomeUserPage() {
         PageFactory.initElements(config.driver, this);
     }
 
     public void clickOnBillPayLink() {
         UiHelper.click(config, billPayLink, "Bill Pay Link");
+    }
+
+    public void clickOnLogoutLink() {
+        UiHelper.click(config, logoutLink, "Logout Link");
+    }
+
+    public void clickOnAccountsOverviewLink() {
+        UiHelper.click(config, accountsOverviewLink, "Accounts Overview Link");
     }
 
 }

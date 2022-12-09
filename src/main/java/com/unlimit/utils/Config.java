@@ -13,9 +13,9 @@ public class Config {
     public static WebDriver driver;
     public static Logger log = LoggerFactory.getLogger(Config.class);
 
-    public static void fail(Exception e) {
-        log.error(e.toString());
-        Assert.fail(e.toString());
+    public static void fail(String error) {
+        log.error(error);
+        Assert.fail(error);
     }
 
     public static String getPropertyValue(String key) {
@@ -25,7 +25,7 @@ public class Config {
             properties = new Properties();
             properties.load(fileReader);
         } catch (Exception e) {
-            fail(e);
+            fail(e.toString());
         }
         return properties.getProperty(key);
     }

@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 public class CreateUserSteps {
 
     public static String senderFirstName, senderLastName, senderAddress, senderCity, senderState, senderZipCode, senderEmail, senderPhone, senderSSN, senderUserName, senderPassword;
-    public static String recipientFirstName, recipientLastName, recipientAddress, recipientCity, recipientState, recipientZipCode, recipientEmail, recipientPhone, recipientUserName, recipientPassword;
+    public static String recipientFirstName, recipientLastName, recipientAddress, recipientCity, recipientState, recipientZipCode, recipientEmail, recipientPhone, recipientSSN, recipientUserName, recipientPassword;
 
     @Given("^Get response of api whose url is (.*)$")
     public void createAUser(String url) {
@@ -39,6 +39,7 @@ public class CreateUserSteps {
         recipientZipCode = ApiHelper.getValue("results.location.postcode[0]");
         recipientEmail = ApiHelper.getValue("results.email[0]");
         recipientPhone = ApiHelper.getValue("results.phone[0]");
+        recipientSSN = ApiHelper.getValue("results.cell[0]");
         recipientUserName = ApiHelper.getValue("results.login.username[0]");
         recipientPassword = ApiHelper.getValue("results.login.password[0]");
     }
