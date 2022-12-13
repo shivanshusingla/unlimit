@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Unlimit Test Project">
+    <listeners>
+        <listener class-name="com.unlimit.listeners.TestNGListeners"/>
+    </listeners>
     <test name="Unlimit Test Cases">
         <classes>
             <class name="com.unlimit.runners.CucumberRunner"></class>

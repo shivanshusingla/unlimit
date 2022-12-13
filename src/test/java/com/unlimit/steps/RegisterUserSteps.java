@@ -26,6 +26,11 @@ public class RegisterUserSteps {
         userPage.enterRecipientDetails();
     }
 
+    @Then("^Enter user details in field$")
+    public void enterUserDetails() {
+        userPage.enterUserDetails();
+    }
+
     @But("^Check if user already present or not$")
     public void checkIfUserAlreadyPresent() {
         if (userPage.checkIfErrorPresent()) {

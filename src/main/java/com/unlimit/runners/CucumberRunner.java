@@ -1,5 +1,6 @@
 package com.unlimit.runners;
 
+import com.unlimit.utils.Browser;
 import com.unlimit.utils.Config;
 import com.unlimit.utils.InitializeDriver;
 import io.cucumber.java.After;
@@ -12,12 +13,9 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import org.testng.util.TimeUtils;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
-@CucumberOptions(features = {"src/main/resources/features"}, glue = {"com.unlimit.steps", "com.unlimit.runners"})
+@CucumberOptions(features = {"src/main/resources/features"}, glue = {"com.unlimit.steps", "com.unlimit.runners"}, plugin = {"pretty", "html:target/cucumber-reports/cucumber-pretty",
+        "json:target/cucumber-reports/CucumberTestReport.json"}, monochrome = true, tags = "@Testcase1")
 public class CucumberRunner {
     protected TestNGCucumberRunner testNGCucumberRunner;
     Config config;
@@ -41,12 +39,12 @@ public class CucumberRunner {
     public void openBrowser() {
         String browserName = config.getPropertyValue("browser.name");
         config.driver = InitializeDriver.initializeDriver(browserName);
-        config.driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        Browser.maximizeBrowser();
     }
 
     @After
     public void closeBrowser() {
-        config.driver.close();
+//        config.driver.close();
     }
 
     @AfterSuite(alwaysRun = true)

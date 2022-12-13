@@ -9,10 +9,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CommonPage {
 
-    private Config config = new Config();
-
     @FindBy(tagName = "h1")
     public WebElement h1Heading;
+    private Config config = new Config();
 
     public CommonPage() {
         PageFactory.initElements(config.driver, this);

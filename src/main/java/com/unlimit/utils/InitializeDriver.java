@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.util.Locale;
@@ -26,8 +25,7 @@ public class InitializeDriver {
         } else if (browserName.contains("safari")) {
             WebDriverManager.safaridriver().setup();
             driver = new SafariDriver();
-        }
-        else if (browserName.contains("edge")) {
+        } else if (browserName.contains("edge")) {
             WebDriverManager.edgedriver().setup();
             driver = new EdgeDriver();
         }

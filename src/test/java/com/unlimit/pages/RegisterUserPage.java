@@ -13,43 +13,41 @@ import java.util.Random;
 
 public class RegisterUserPage {
 
-    private Config config = new Config();
-
     @FindBy(linkText = "Register")
     public WebElement registerLink;
-
     @FindBy(id = "customer.firstName")
     public WebElement userNameField;
-
     @FindBy(id = "customer.lastName")
     public WebElement lastNameField;
-
     @FindBy(id = "customer.address.street")
     public WebElement address;
-
     @FindBy(id = "customer.address.city")
     public WebElement city;
-
     @FindBy(id = "customer.address.state")
     public WebElement state;
-
     @FindBy(id = "customer.address.zipCode")
     public WebElement zipCode;
-
     @FindBy(id = "customer.phoneNumber")
     public WebElement phoneNumber;
-
     @FindBy(id = "customer.ssn")
     public WebElement ssn;
-
     @FindBy(id = "customer.username")
     public WebElement username;
-
     @FindBy(id = "customer.password")
     public WebElement password;
-
     @FindBy(id = "repeatedPassword")
     public WebElement confirmPassword;
+    @FindBy(id = "firstname")
+    public WebElement userFirstNameField;
+    @FindBy(id = "lastname")
+    public WebElement userLastNameField;
+    @FindBy(id = "email_address")
+    public WebElement userEmailField;
+    @FindBy(id = "password")
+    public WebElement userPassword;
+    @FindBy(id = "password-confirmation")
+    public WebElement userPasswordConfirmation;
+    private Config config = new Config();
 
     public RegisterUserPage() {
         PageFactory.initElements(config.driver, this);
@@ -96,12 +94,20 @@ public class RegisterUserPage {
         }
         if (errorMessage != null) {
             String errorMsg = UiHelper.getText(config, errorMessage, "Error Message");
-            if(errorMsg.contains("internal error")){
+            if (errorMsg.contains("internal error")) {
                 config.fail("Getting An internal error has occurred and has been logged.");
             }
             CreateUserSteps.senderUserName = CreateUserSteps.senderUserName + new Random().nextInt();
             return true;
         }
         return false;
+    }
+
+    public void enterUserDetails() {
+        UiHelper.enterData(config, userFirstNameField, CreateUserSteps.senderFirstName, "First Name");
+        UiHelper.enterData(config, userLastNameField, CreateUserSteps.senderLastName, "Last Name");
+        UiHelper.enterData(config, userEmailField, CreateUserSteps.senderEmail, "Email");
+        UiHelper.enterData(config, userPassword, CreateUserSteps.senderPassword, "Password");
+        UiHelper.enterData(config, userPasswordConfirmation, CreateUserSteps.senderPassword, "Confirm Password");
     }
 }

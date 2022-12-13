@@ -1,5 +1,7 @@
 package com.unlimit.utils;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -12,7 +14,17 @@ public class UiHelper {
             actions.moveToElement(element).click().build().perform();
             config.log.info("Clicked on {}", description);
         } catch (Exception e) {
-            config.fail(e.toString());
+            config.fail(ExceptionUtils.getStackTrace(e));
+        }
+    }
+
+    public static void clickThroughJS(Config config, WebElement element, String... description) {
+        try {
+            JavascriptExecutor executor = (JavascriptExecutor) config.driver;
+            executor.executeScript("arguments[0].click();", element);
+            config.log.info("Clicked on {}", description);
+        } catch (Exception e) {
+            config.fail(ExceptionUtils.getStackTrace(e));
         }
     }
 
@@ -20,9 +32,9 @@ public class UiHelper {
         try {
             element.clear();
             element.sendKeys(data);
-            config.log.info("Entered data - {} in field name - {}", data, fieldName);
+            config.log.info("Entered data '{}' in field name {}", data, fieldName);
         } catch (Exception e) {
-            config.fail(e.toString());
+            config.fail(ExceptionUtils.getStackTrace(e));
         }
     }
 
@@ -32,7 +44,7 @@ public class UiHelper {
             text = element.getText();
             config.log.info("Text of {} element is {}", description, text);
         } catch (Exception e) {
-            config.fail(e.toString());
+            config.fail(ExceptionUtils.getStackTrace(e));
         }
         return text;
     }
@@ -44,7 +56,7 @@ public class UiHelper {
             selectedOption = select.getFirstSelectedOption().getText();
             config.log.info("Text of first selected option is {}", description, selectedOption);
         } catch (Exception e) {
-            config.fail(e.toString());
+            config.fail(ExceptionUtils.getStackTrace(e));
         }
         return selectedOption;
     }

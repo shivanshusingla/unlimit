@@ -1,5 +1,6 @@
 Feature: Unlimit Test Project
 
+    @Testcase1
     Scenario: Test case 1
         Given Get response of api whose url is https://randomuser.me/api/
         Then Get all details of recipient

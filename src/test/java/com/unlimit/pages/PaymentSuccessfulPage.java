@@ -8,16 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PaymentSuccessfulPage {
 
-    private Config config = new Config();
-
     @FindBy(id = "payeeName")
     public WebElement payeeName;
-
     @FindBy(id = "amount")
     public WebElement amount;
-
     @FindBy(id = "fromAccountId")
     public WebElement accountNumberDropdown;
+    private Config config = new Config();
 
     public PaymentSuccessfulPage() {
         PageFactory.initElements(config.driver, this);

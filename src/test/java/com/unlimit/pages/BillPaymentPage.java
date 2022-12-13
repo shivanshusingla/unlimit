@@ -9,8 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class BillPaymentPage {
 
-    private Config config = new Config();
-
+    public static String recipientAccountNumber;
     @FindBy(name = "payee.name")
     public WebElement payeeName;
 
@@ -40,8 +39,7 @@ public class BillPaymentPage {
 
     @FindBy(name = "fromAccountId")
     public WebElement accountNumberDropdown;
-
-    public static String recipientAccountNumber;
+    private Config config = new Config();
 
     public BillPaymentPage() {
         PageFactory.initElements(config.driver, this);

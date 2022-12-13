@@ -8,16 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 
 public class WelcomeUserPage {
 
-    private Config config = new Config();
-
     @FindBy(linkText = "Bill Pay")
     public WebElement billPayLink;
-
     @FindBy(linkText = "Log Out")
     public WebElement logoutLink;
-
     @FindBy(linkText = "Accounts Overview")
     public WebElement accountsOverviewLink;
+    private Config config = new Config();
 
     public WelcomeUserPage() {
         PageFactory.initElements(config.driver, this);

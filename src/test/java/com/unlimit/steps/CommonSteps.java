@@ -9,8 +9,8 @@ import org.testng.Assert;
 
 public class CommonSteps {
 
-    private CommonPage commonPage = new CommonPage();
     String welcomeText;
+    private CommonPage commonPage = new CommonPage();
 
     @Given("^Open Url - (.*)$")
     public void openUrl(String url) {
